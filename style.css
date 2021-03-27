@@ -1,0 +1,62 @@
+/*
+Theme Name: Depressed blackboy
+Author: kuaminika
+*/
+#k-aboutCard
+{
+    
+    background:  linear-gradient(180deg, rgba(255, 255, 255, 0.438), rgba(255, 255, 255, 0))
+}
+
+.k-current-menu-item
+{
+  font-weight: bold;
+}
+
+
+.k-big-banner
+    {
+        min-height:90%
+    }
+
+footer a
+{
+  color:#000 !important
+}
+
+footer 
+{
+  border-top:1px solid #000
+}
+
+/*small screens*/
+@media screen and (min-width: 300px) and (max-width:719px) {
+
+    #logoPlaceHolder
+    {
+      width:75%
+    }
+
+     .k-banner
+    {
+        min-height:300px
+    } 
+    .k-bgImage >*
+    {
+      background:  linear-gradient(180deg, rgba(255, 255, 255, 0.438), rgba(255, 255, 255, 0))
+    }
+    
+}
+/*big screens*/
+@media screen and (min-width:720px) {
+   #logoPlaceHolder
+    {
+      width:55%
+    }
+
+
+   .k-banner
+  {
+      min-height:400px
+  } 
+}
