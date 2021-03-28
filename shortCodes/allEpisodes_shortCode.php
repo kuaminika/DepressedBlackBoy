@@ -27,7 +27,7 @@ add_shortcode("LoadBoxesInCategory",function($parms)
           //  echo json_encode($args)."</br>";
         $loop = new \WP_Query($args);
 
-        $othersInCategory =[];
+      
         ?>
         <div class="container mt-3 d-md-flex flex-wrap justify-content-center"> 
             <div class="row">   
@@ -35,16 +35,18 @@ add_shortcode("LoadBoxesInCategory",function($parms)
                 while($loop->have_posts()) :   
                    $loop->the_post(); 
                 ?>
-                <div class="col-md-6 col-lg-6 my-1 card">
-                    <h5 class="card-header"><a href="<?php   the_permalink()?>"><?php the_title(); ?></a></h5>
-                    <div class="card-body border border-dark d-md-flex"> 
-                        <div class="col-md-8 m-lg-1">
-                         <?php the_excerpt(); ?>
-                        </div>
-                        
-                        <div class="col-md-4 col-sm-12 ">
+                <div class="col-md-6 col-lg-6 my-1 ">
+                    <div class="card">
+                        <h5 class="card-header"><a href="<?php   the_permalink()?>"><?php the_title(); ?></a></h5>
+                        <div class="card-body border border-dark d-md-flex"> 
+                            <div class="col-md-8 m-lg-1">
+                            <?php the_excerpt(); ?>
+                            </div>
+                            
+                            <div class="col-md-4 col-sm-12 ">
 
-                            <img style="width:100%" src="<?php  the_post_thumbnail_url() ?>" />
+                                <img style="width:100%" src="<?php  the_post_thumbnail_url() ?>" />
+                            </div>
                         </div>
                     </div>
                 </div>
