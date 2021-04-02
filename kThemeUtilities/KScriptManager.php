@@ -37,6 +37,11 @@ class KScriptManager
         $this->addStyleScript($fileName, $path);
     }
     
+    function addForeignStyleScript($fileName,$url)
+    {
+        wp_register_style($fileName,$url);
+        wp_enqueue_style($fileName);
+    }
     function addStyleScript($fileName,$path="")
     {
         $path = !empty($path)?"css/".$path."/":"css/";
@@ -81,6 +86,12 @@ class KScriptManager
     }
     
     
+    function addForeignJSScript($fileName,$url)
+    {
+        wp_register_script($fileName,$url);
+        wp_enqueue_script( $fileName);
+        
+    }
    
     function addJSScript($fileName,$path="")
     {
