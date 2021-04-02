@@ -24,19 +24,19 @@ var kLib = kLib ||{} ;
         treatLoop(loopName,metaItems)
         {
            let loopElement = document.querySelector("["+this.loopAttributeName+'='+loopName+"]"); 
-           let placeHolder = loopElement.parentElement;
-         //  let finalElement = loopElement.cloneNode();
+           let placeHolder = loopElement.parentNode;
            let wraperElement = document.createElement("div");
            wraperElement.className += " "+ this.kBinderLoopwrapStamp;
            kLib.forEach(metaItems,item=>
             {
-
+                let targetPlaceholder = loopElement.cloneNode();
                 kLib.iterateObject(item,(k,v)=>
                 {
                    
                     let selectorAddress = "["+this.loopItemAttributeName+"="+k+"]";
                     
                     let target =   loopElement.querySelector(selectorAddress);
+              
                     target = target.cloneNode();
                   
                     if(!target) return;
@@ -51,14 +51,11 @@ var kLib = kLib ||{} ;
                      }:t=>{t.innerHTML = v};
 
                   operation(target);
-
-                  wraperElement.appendChild(target);
+                  targetPlaceholder.appendChild(target);
                 });
-                loopElement.remove();
-                placeHolder.appendChild(wraperElement);
-
-
+                wraperElement.appendChild(targetPlaceholder);              
            });
+           placeHolder.replaceChild(wraperElement,loopElement);
         }
     }
 
