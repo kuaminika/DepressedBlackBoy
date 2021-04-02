@@ -14,12 +14,12 @@ function getCurrentPageUrl()
 $configsArr = [
     "mediaUrl"=>get_template_directory_uri()
     ,"siteUrl" =>get_home_url()
+    ,"templatesDirectory" =>get_template_directory_uri()."/views"
     ,"currentPageUrl"=>  getCurrentPageUrl() 
-    ,"themeAdminPageTitle"=>"Tem Kuaminika"
-    ,"themeAdminPageSlug"=>"tem_kuaminika_settings"
-
-
-    ,"mediaUrl_wp"=>get_template_directory_uri(). "/temBusRed_files/"//wp_get_upload_dir()["baseurl"] ."/"
+    ,"themeAdminPageTitle"=>"Kuaminika Simple Theme"
+    ,"themeAdminPageSlug"=>"kuaminikaSimpleTheme_settings"
+    
+    ,"mediaUrl_wp"=>get_template_directory_uri()
     ,"siteTitle_default" => [
         "en"=>"First and Finest Consulting Company in Business Industrial Optimisation",
         "fr"=>"La premi&egrave;re et meilleure soci&eacute;t&eacute; de conseil et d'optimisation industrielle en Afrique"        
