@@ -1,6 +1,7 @@
 <?php
 namespace kThemeUtilities;
 
+use KTemplateMaker;
 
 // require_once dirname(__FILE__)."/KConfigSet.php";
 // require_once dirname(__FILE__)."/TemplateMaker.php";
@@ -29,8 +30,10 @@ abstract class KThemeInfo
     protected $controllerBuilder;
     protected $kConfigSet;
 
-    public function __construct(KConfigSet $kConfigSet,BrowserInfo $browserInfo)
+    public function __construct(KConfigSet $kConfigSet,BrowserInfo $browserInfo, KTemplateMaker $kTemplateMaker)
     {
+        $this->tmplateMkr = $kTemplateMaker;
+
         $this->kConfigSet = $kConfigSet;
         $this->currentPageUrl =  $kConfigSet->getConfig('currentPageUrl');
         $this->mediaUrl = $kConfigSet->getConfig("mediaUrl");   
@@ -49,6 +52,10 @@ abstract class KThemeInfo
 
     public abstract function getCotnrollerBuilderForAPI($lang = null);
 
+    public function getTemplateMaker()
+    {
+        return $this->tmplateMkr;
+    }
     public function getLanguage()
     {
 
