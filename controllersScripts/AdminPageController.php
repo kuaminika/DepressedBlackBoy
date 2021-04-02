@@ -55,6 +55,6 @@ class AdminPageController extends KThemeController
                         ,"themeAdminPageSlug"=>$this->themeSettings->themeAdminPageSlug
                         ,"adminFormFields"=>$this->themeSettings->adminFormFields
                     ];
-        echo $this->tmplateMkr->makeTemplate('/templates/admin_template.html',$blankSettings );
+        echo $this->tmplateMkr->makeTemplate('/admin_template.html',$blankSettings );
     }
 }
