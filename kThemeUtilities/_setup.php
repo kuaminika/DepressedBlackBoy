@@ -3,6 +3,7 @@
 
 use kThemeUtilities\BrowserInfo;
 use kThemeUtilities\KConfigSet;
+use kThemeUtilities\KTemplateMaker;
 
 
 function getBrowserInfo()
@@ -22,7 +23,7 @@ function getThemeSettings()
     $kTemplateMaker = new KTemplateMaker($configs->getConfig("templatesDirectory"));
     
     $binfo = new BrowserInfo();
-    $settings = new DBlackBoySettings($configs,$binfo ,$kTemplateMaker);
+    $settings = new KSimpleThemeSettings($configs,$binfo ,$kTemplateMaker);
     return $settings;
 }
 
