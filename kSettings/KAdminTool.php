@@ -2,10 +2,11 @@
 
 class KAdminTool extends \kThemeUtilities\KAdminSetUpTool
 {
-    
+    private $bootstrap_CSS_URL;
     function __construct( $kThemeInfo)
     {
         parent::__construct($kThemeInfo);
+        $this->bootstrap_CSS_URL = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css";
     }
 
 
@@ -57,8 +58,9 @@ class KAdminTool extends \kThemeUtilities\KAdminSetUpTool
 
     public function setItUp()
     {            
-        add_action('admin_menu', function() {
-            $themeSettings = getThemeSettings();
+        $themeSettings= $this->themeSettings;
+        add_action('admin_menu', function() use ($themeSettings) 
+        {
            add_menu_page( $themeSettings->themeAdminPageTitle, $themeSettings->themeAdminPageTitle, 'unfiltered_html', $themeSettings->themeAdminPageSlug, function()use(&$themeSettings)
             {      
                 $adminPageController = new \controllerScripts\AdminPageController($themeSettings);
@@ -72,10 +74,10 @@ class KAdminTool extends \kThemeUtilities\KAdminSetUpTool
 
         add_option("testOption","testValue");
         
-        add_action('admin_head',function(){
-            $themeSettings = getThemeSettings();
+        add_action('admin_head',function() use($themeSettings)
+        {
             $scriptManager = $themeSettings->getScriptManager();
-            $scriptManager->addForeignStyleScript("bootstrap.min.css","https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css");
+            $scriptManager->addForeignStyleScript("bootstrap.min.css",$this->bootstrap_CSS_URL);
             //$scriptManager->addStyleScript("bootstrap.min.css");
             $scriptManager->addStyleScript("admin.css");
 			
@@ -90,10 +92,9 @@ class KAdminTool extends \kThemeUtilities\KAdminSetUpTool
 
 
         
-        add_action( 'admin_init', function()
+        add_action( 'admin_init', function() use($themeSettings)
         {
             //adding section
-            $themeSettings = getThemeSettings();
             $sectionId = $themeSettings->themeAdminPageSlug;//."kAdminSection";
 
             add_settings_section($sectionId,// id
