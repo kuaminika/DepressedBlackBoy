@@ -1,12 +1,13 @@
 <?php
 
 require_once  dirname(__FILE__)."/kThemeUtilities/_importKthemeUtilities.php";
-require_once dirname(__FILE__)."/kSettings/_imporDBBSettings.php";
+require_once dirname(__FILE__)."/kSettings/_imporKSettings.php";
 require_once dirname(__FILE__)."/KThemeTools/KMenuMaker.php";
 require_once dirname(__FILE__)."/kThemeUtilities/_setup.php";
 require_once dirname(__FILE__)."/shortCodes/includeAll.php";
 require_once dirname(__FILE__)."/kWidgets/includeAll.php";
-//require_once dirname(__FILE__)."/K_MLP/SetUp.php";
+require_once dirname(__FILE__)."/controllersScripts/__requireAllControllers.php";
+
 // This theme uses post thumbnails
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size(200);
@@ -90,3 +91,11 @@ add_action("init",function(){
     \generateExtraPageFields($extraFieldsForPages);
 });
 
+
+function setupAdmin()
+{
+    $themeSettings = getThemeSettings();
+    $adminTool = new KAdminTool($themeSettings);
+    $adminTool->setItUp();
+}
+setupAdmin();
