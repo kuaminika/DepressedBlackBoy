@@ -1,12 +1,7 @@
 <?php
 namespace kThemeUtilities;
 
-use KTemplateMaker;
 
-// require_once dirname(__FILE__)."/KConfigSet.php";
-// require_once dirname(__FILE__)."/TemplateMaker.php";
-// require_once dirname(__FILE__)."/KScriptManager.php";
-// require_once dirname(__FILE__)."/KOptionManager.php";
 
 abstract class KThemeInfo
 {
