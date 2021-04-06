@@ -1,4 +1,5 @@
 <?php
+namespace kThemeUtilities;
 
 class KTemplateMaker
 {
@@ -31,7 +32,7 @@ class KTemplateMaker
 
             echo $result;
         }
-        catch(Exception $ex)
+        catch(\Exception $ex)
         {
             echo $ex->getMessage();
         }
