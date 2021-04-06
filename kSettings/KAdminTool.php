@@ -78,15 +78,16 @@ class KAdminTool extends \kThemeUtilities\KAdminSetUpTool
         {
             $scriptManager = $themeSettings->getScriptManager();
             $scriptManager->addForeignStyleScript("bootstrap.min.css",$this->bootstrap_CSS_URL);
-            //$scriptManager->addStyleScript("bootstrap.min.css");
             $scriptManager->addStyleScript("admin.css");
-			
+			$scriptManager->addForeignJSScript("iro","https://cdn.jsdelivr.net/npm/@jaames/iro");
             $scriptManager->addVendorJSScript("axios.min.js");   
             $scriptManager->addJSScript("KLIB.js","KLIB"); 
+            $scriptManager->addJSScript("KuaminikaLogger.js","KLIB");  
             $scriptManager->addJSScript("KCourrier.js","KLIB");  
             $scriptManager->addJSScript("KBinder.js","KLIB");
             $scriptManager->addJSScript("KClassTool.js","KLIB");  
             $scriptManager->addJSScript("KForm.js","KLIB");    
+            $scriptManager->addJSScript("adminPages.js");    
             $scriptManager->addJSScript("admin.js");    
         });
 
