@@ -24,6 +24,10 @@ var kLib = kLib ||{} ;
         treatLoop(loopName,metaItems)
         {
            let loopElement = document.querySelector("["+this.loopAttributeName+'='+loopName+"]"); 
+           if(!loopElement)
+           {
+               throw "cannnot find element with attribute:"+"["+this.loopAttributeName+'='+loopName+"]";
+           }
            let placeHolder = loopElement.parentNode;
            let wraperElement = document.createElement("div");
            wraperElement.className += " "+ this.kBinderLoopwrapStamp;
@@ -48,7 +52,10 @@ var kLib = kLib ||{} ;
                         t.name = v;
                 
                 
-                     }:t=>{t.innerHTML = v};
+                     }:t=>{
+                         
+                        t.innerHTML = v
+                    };
 
                   operation(target);
                   targetPlaceholder.appendChild(target);
