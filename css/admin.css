@@ -18,3 +18,15 @@ input[type=text]
 {
     cursor:pointer
 }
+
+.form-group.row
+{ padding:2%
+}
+
+.form-group.row:nth-child(odd) 
+{
+    background:#506475;
+   color:aliceblue
+   
+
+}
