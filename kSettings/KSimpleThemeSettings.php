@@ -13,9 +13,7 @@ class KSimpleThemeSettings extends KThemeInfo
     {
         parent::__construct($kConfigSet,$browserInfo,$kTemplateMaker);
 
-        $this->adminSettingsName = $kConfigSet->getConfig("adminSettingsName");
-
-
+      
     }
 
     public function getCotnrollerBuilderForAPI($lang = null)
