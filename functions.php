@@ -1,5 +1,6 @@
 <?php
 
+require_once dirname(__FILE__)."/kUtilities/_importKUtilities.php";
 require_once  dirname(__FILE__)."/kThemeUtilities/_importKthemeUtilities.php";
 require_once dirname(__FILE__)."/kSettings/_imporKSettings.php";
 require_once dirname(__FILE__)."/KThemeTools/KMenuMaker.php";
@@ -19,6 +20,7 @@ function getKMenuMaker()
     $menuMaker = new KThemeTools\KMenuMaker();
     return $menuMaker;
 }
+//TODO put this stuff somewhere
 function getExtraPageFieldInfos()
 {       
     $categoryListDisplay =  ["key"=>"categoryListDisplay","displayName"=>"Name category of list to display (optional)","type"=>"text"];
@@ -87,10 +89,21 @@ function generateExtraPageFields($fields)
 
 add_action("init",function(){
 
-    $extraFieldsForPages = getExtraPageFieldInfos()["extraFieldsForPages"];//[["key"=>"categoryListDisplay","displayName"=>"Name category of list Display (optional)","type"=>"text"]];
+ 
+    $extraFieldsForPages = getExtraPageFieldInfos()["extraFieldsForPages"];
+    //anatomy is like this:
+    //[["key"=>"categoryListDisplay","displayName"=>"Name category of list Display (optional)","type"=>"text"]];
     \generateExtraPageFields($extraFieldsForPages);
 });
 
+$themeSettings = getThemeSettings();
+add_action("wp_enqueue_scripts",function() use ($themeSettings){
+    
+    $scriptManager = $themeSettings->getScriptManager();
+    $scriptManager->addForeignStyleScript("bootstrap.min.css","https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css");
+    $scriptManager->addForeignStyleScript("font-awesome.min.css","https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+    $scriptManager->addForeignStyleScript("style.css", $themeSettings->mediaUrl."/style.css");
+});
 
 function setupAdmin()
 {
