@@ -9,6 +9,10 @@
 
     $themeSettings = getThemeSettings();
     $scriptManager = $themeSettings->getScriptManager();
+    $fieldGroupName = $themeSettings->adminFormFields["colorChoosers"]["name"];
+    $settingsTool  = $themeSettings->getSettingsTool($fieldGroupName);
+    $stngs = (array) $settingsTool->getGroupSettings($fieldGroupName);
+    $stngs = new \KUtilities\KArrayWrapper($stngs,true);
     $scripts = [];
     $menuMaker = getKMenuMaker();
     $lang =$themeSettings->getLanguage();
@@ -21,27 +25,35 @@
 
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
-    <link href="<?php echo $themeSettings->mediaUrl ?>/style.css" type="text/css" rel="stylesheet" />
+  <?php wp_head() ?>
   
 	<title><?php echo wp_get_document_title(); ?></title>
+
+  <style>
+     .navbar-light .navbar-nav .nav-link
+     {
+        color:<?php echo $stngs->get("headerbarFontColorCode") ?>
+     }
+
+     .navbar-brand
+     {
+        color:<?php echo $stngs->get("BrandFontColorCode") ?> !important;
+      }
+  </style>
+
 </head>
 
 <body class="d-flex flex-column h-100">
   <header>
-    <nav class="navbar border-bottom border-dark navbar-expand-lg navbar-light bg-light mb-4">
+    <nav class="navbar border-bottom border-dark navbar-expand-lg navbar-light bg-light mb-4" style="background-color:<?php echo $stngs->get("bgBarColorCode") ?> !important">
       <div class="container ">
         <a class="navbar-brand" style="width: 30%" href="<?php echo $themeSettings->siteUrl?>/">
           <!-- <img src="display/tmpLogo.png" alt="depressed black boy" />-->
+          
           Depressed black boy
         </a> 
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"

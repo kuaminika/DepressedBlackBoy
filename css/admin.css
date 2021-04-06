@@ -1,0 +1,32 @@
+.kAdminContainer-panel
+{
+    display: none;
+}
+
+.kAdminContainer-panel.active
+{
+    display: inline;
+}
+
+input[type=text]
+{
+    color:#000000;
+    font-weight:600
+}
+
+.k-pointed
+{
+    cursor:pointer
+}
+
+.form-group.row
+{ padding:2%
+}
+
+.form-group.row:nth-child(odd) 
+{
+    background:#506475;
+   color:aliceblue
+   
+
+}

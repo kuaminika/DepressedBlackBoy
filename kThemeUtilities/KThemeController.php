@@ -9,11 +9,13 @@ abstract class KThemeController
 
     protected $themeSettings; 
     public $lang;
+    protected $tmplateMkr;
 
     public function __construct(KThemeInfo $kThemeInfo,$lang = "en")
     {
         $this->themeSettings = $kThemeInfo;
         $this->lang = $lang;      
+        $this->tmplateMkr = $kThemeInfo->getTemplateMaker();
     }
 
     public function getThemeSettings()

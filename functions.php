@@ -1,12 +1,14 @@
 <?php
 
+require_once dirname(__FILE__)."/kUtilities/_importKUtilities.php";
 require_once  dirname(__FILE__)."/kThemeUtilities/_importKthemeUtilities.php";
-require_once dirname(__FILE__)."/kSettings/_imporDBBSettings.php";
+require_once dirname(__FILE__)."/kSettings/_imporKSettings.php";
 require_once dirname(__FILE__)."/KThemeTools/KMenuMaker.php";
 require_once dirname(__FILE__)."/kThemeUtilities/_setup.php";
 require_once dirname(__FILE__)."/shortCodes/includeAll.php";
 require_once dirname(__FILE__)."/kWidgets/includeAll.php";
-//require_once dirname(__FILE__)."/K_MLP/SetUp.php";
+require_once dirname(__FILE__)."/controllersScripts/__requireAllControllers.php";
+
 // This theme uses post thumbnails
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size(200);
@@ -18,6 +20,7 @@ function getKMenuMaker()
     $menuMaker = new KThemeTools\KMenuMaker();
     return $menuMaker;
 }
+//TODO put this stuff somewhere
 function getExtraPageFieldInfos()
 {       
     $categoryListDisplay =  ["key"=>"categoryListDisplay","displayName"=>"Name category of list to display (optional)","type"=>"text"];
@@ -86,30 +89,26 @@ function generateExtraPageFields($fields)
 
 add_action("init",function(){
 
-    $extraFieldsForPages = getExtraPageFieldInfos()["extraFieldsForPages"];//[["key"=>"categoryListDisplay","displayName"=>"Name category of list Display (optional)","type"=>"text"]];
+ 
+    $extraFieldsForPages = getExtraPageFieldInfos()["extraFieldsForPages"];
+    //anatomy is like this:
+    //[["key"=>"categoryListDisplay","displayName"=>"Name category of list Display (optional)","type"=>"text"]];
     \generateExtraPageFields($extraFieldsForPages);
 });
 
-// /// ACf
-// // Define path and URL to the ACF plugin.
-// define( 'MY_ACF_PATH', get_stylesheet_directory() . '/includes/acf/' );
-// define( 'MY_ACF_URL', get_stylesheet_directory_uri() . '/includes/acf/' );
+$themeSettings = getThemeSettings();
+add_action("wp_enqueue_scripts",function() use ($themeSettings){
+    
+    $scriptManager = $themeSettings->getScriptManager();
+    $scriptManager->addForeignStyleScript("bootstrap.min.css","https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css");
+    $scriptManager->addForeignStyleScript("font-awesome.min.css","https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+    $scriptManager->addForeignStyleScript("style.css", $themeSettings->mediaUrl."/style.css");
+});
 
-// // Include the ACF plugin.
-// include_once( MY_ACF_PATH . 'acf.php' );
-
-// // Customize the url setting to fix incorrect asset URLs.
-// add_filter('acf/settings/url', 'my_acf_settings_url');
-// function my_acf_settings_url( $url ) {
-//     return MY_ACF_URL;
-// }
-
-// // (Optional) Hide the ACF admin menu item.
-// add_filter('acf/settings/show_admin', 'my_acf_settings_show_admin');
-// function my_acf_settings_show_admin( $show_admin ) {
-//     return false;
-// }
-
-
-// /// end acf
-
+function setupAdmin()
+{
+    $themeSettings = getThemeSettings();
+    $adminTool = new KAdminTool($themeSettings);
+    $adminTool->setItUp();
+}
+setupAdmin();

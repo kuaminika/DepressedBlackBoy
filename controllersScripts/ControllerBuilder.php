@@ -8,7 +8,7 @@ class ControllerBuilder extends \kThemeUtilities\KControllerCreator
 {
 
     
-    public function __construct(\DBlackBoySettings $kThemeInfo,$lang)
+    public function __construct(\KSimpleThemeSettings $kThemeInfo,$lang)
     {
         $this->inTheMakeing = new ContactPageController($kThemeInfo,$lang);
     }

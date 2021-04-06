@@ -7,14 +7,11 @@ require_once dirname(__FILE__)."/KThemeInfo.php";
 
 abstract class KAdminSetUpTool
 {
-    private $themeSettings;
-    private $scriptManager;
+    protected $themeSettings;
 
     public function __construct(KThemeInfo $kThemeInfo)
     {
-       // var_dump($kThemeInfo);
-        $this->themeSettings = $kThemeInfo;
-        $this->scriptManager = $kThemeInfo->getScriptManager();        
+        $this->themeSettings = $kThemeInfo;      
     }
 
     public abstract function setItUp();
