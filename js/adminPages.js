@@ -194,7 +194,7 @@ function initColorFormPage(currentApp,form,pageName)
                                                             }();
             ipt.type = "text";
             ipt.name = el.id;
-            ipt.readOnly = true;
+            
             ipt.required = true;
             ipt.value = value;
             count++;
@@ -221,7 +221,7 @@ function initColorFormPage(currentApp,form,pageName)
                                                                             }();
                 ipt.type = "text";
                 ipt.name = el.id;
-                ipt.readOnly = true;
+                
                 ipt.required = true;
                count++;
 
