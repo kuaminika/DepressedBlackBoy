@@ -92,5 +92,3 @@
       </div>
     </nav>
   </header>
-  
-  <main class="h-100  flex-shrink-0">

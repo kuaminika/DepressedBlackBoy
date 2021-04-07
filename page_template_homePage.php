@@ -6,7 +6,10 @@
 get_header();
 
 ?>
-<div class="container-fluid my-auto d-flex k-big-banner bg-outline-primary k-bgImage" data-url="<?php the_post_thumbnail_url("full") ?>">
+
+  
+<main class="h-100  flex-shrink-0">
+  <div class="container-fluid my-auto d-flex k-big-banner bg-outline-primary k-bgImage" data-url="<?php the_post_thumbnail_url("full") ?>">
       <div class="container  d-flex">
         <div id="k-aboutCard" class="card col-md-6">
           <div class="card-body">

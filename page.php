@@ -3,7 +3,10 @@ get_header();
 
 
 ?>
-<div class="container my-auto k-banner bg-outline-primary k-bgImage" data-url="">
+
+  
+<main class="  flex-shrink-0">
+  <div class="container my-auto k-banner bg-outline-primary k-bgImage" data-url="">
   
        
             <?php
