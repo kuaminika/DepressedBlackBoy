@@ -53,7 +53,7 @@ var kLib = kLib ||{} ;
                 
                 
                      }:t=>{
-                         
+                        t.id = v;
                         t.innerHTML = v
                     };
 

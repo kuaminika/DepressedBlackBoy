@@ -139,11 +139,12 @@ function initColorFormPage(currentApp,form,pageName)
     form.setFormData = initChooser;
     let tmpPage = new AdminPage({app:currentApp, settingsName:pageName,id:pageName});
 
-     
+     let count = 1;
     createdPage.activate =(function(initialFn)
     {
+     
         function activateMore()
-        {
+        {   count =1;
             initialFn();
             
             let courrierForForm = kLib.activeCourriers.courrierForForm;
@@ -183,11 +184,11 @@ function initColorFormPage(currentApp,form,pageName)
         let options  = {};
         options.color = value;
         var colorWheel = new iro.ColorPicker(el, options);
-            colorWheel.on('color:change', (color, changes)=>{
-            ipt.value = color.hexString;
+            colorWheel.on('color:change', (color)=>{
+                ipt.value = color.hexString;
             });
-        let ipt =document.getElementById(el.id+"_input")|| function(){ let rslt = document.createElement("input");
-                                                                rslt.id = el.id+"_input";
+        let ipt =document.getElementById(el.id+"_input"+count)|| function(){ let rslt = document.createElement("input");
+                                                                rslt.id = el.id+"_input"+count;
                                                                 el.parentNode.insertBefore(rslt, el.nextSibling);
                                                                 return rslt;
                                                             }();
@@ -196,22 +197,25 @@ function initColorFormPage(currentApp,form,pageName)
             ipt.readOnly = true;
             ipt.required = true;
             ipt.value = value;
+            count++;
     }
 
     function initVirginChoosers()
     {
        let virginChooserClassName = "color-chooser";
         let virginChoosers = document.getElementsByClassName(virginChooserClassName);
+       
         kLib.forEach(virginChoosers,el => {
 
+            el.className = el.className.replace(virginChooserClassName,"");
             var colorWheel = new iro.ColorPicker(el, {});
             colorWheel.on('color:change', (color, changes)=>{
                 ipt.value = color.hexString;
             });
           
             
-            let ipt =document.getElementById(el.id+"_input")|| function(){ let rslt = document.createElement("input");
-                                                                            rslt.id = el.id+"_input";
+            let ipt =document.getElementById(el.id+"_input"+count)|| function(){ let rslt = document.createElement("input");
+                                                                            rslt.id = el.id+"_input"+count;
                                                                             el.parentNode.insertBefore(rslt, el.nextSibling);
                                                                             return rslt;
                                                                             }();
@@ -219,7 +223,7 @@ function initColorFormPage(currentApp,form,pageName)
                 ipt.name = el.id;
                 ipt.readOnly = true;
                 ipt.required = true;
-                ipt.value = value;
+               count++;
 
           
         });  
