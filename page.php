@@ -5,7 +5,7 @@ get_header();
 ?>
 
   
-<main class="  flex-shrink-0">
+<main class="  flex-shrink-1">
   <div class="container my-auto k-banner bg-outline-primary k-bgImage" data-url="">
   
        
