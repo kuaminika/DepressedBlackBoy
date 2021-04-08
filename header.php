@@ -51,10 +51,8 @@
   <header>
     <nav class="navbar border-bottom border-dark navbar-expand-lg navbar-light bg-light mb-4" style="background-color:<?php echo $stngs->get("bgBarColorCode") ?> !important">
       <div class="container ">
-        <a class="navbar-brand" style="width: 30%" href="<?php echo $themeSettings->siteUrl?>/">
-          <!-- <img src="display/tmpLogo.png" alt="depressed black boy" />-->
-          
-          Depressed black boy
+        <a class="navbar-brand" style="width: 30%" href="<?php echo $themeSettings->siteUrl?>/">          
+         <?php echo get_bloginfo("name") ?>
         </a> 
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
